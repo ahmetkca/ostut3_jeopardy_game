@@ -82,5 +82,18 @@ bool valid_answer(char *category, int value, char *answer)
 bool already_answered(char *category, int value)
 {
     // lookup the question and see if it's already been marked as answered
+
+    for(int i =0; i<NUM_QUESTIONS; i++){
+
+        if(questions[i].category==category && questions[i].value == value){
+
+            if(questions[i].answered){
+                return true;
+            }
+
+        }
+
+    }
     return false;
+    
 }
