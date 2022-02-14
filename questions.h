@@ -10,6 +10,8 @@
 
 #include <stdbool.h>
 
+
+#define QUESTIONS_FILE_PATH "questions.txt"
 #define MAX_LEN 256
 #define NUM_CATEGORIES 3
 // The number of questions, you can use this in your functions in

@@ -1,1 +1,12 @@
-What do you call a program that translates Java bytecode into machine language instructions?|Low-level language|programming|200
+Is Java bytecode a high-level language or a low-level language?|Low-level language|programming|200
+What is a compiler?|Translates source codes into object codes|programming|400
+What do you call a program that translates Java bytecode into machine language instructions?|Interpreter|programming|600
+Is Java a high-level language or a low-level language?|High-level language|programming|800
+Who's worst professor in the algorithm course?|Masoud|algorithms|200
+Radix sort requires which sorting algorithm for assistance?|counting sort|algorithms|400
+What is the most popular divide and conquer sorting algorithm|merge sort|algorithms|600
+What is the time complexity of quicksort?|nlogn|algorithms|800
+A database object which enables you to locate multiple records matching specified criteria.|query|databases|200
+a collection of related information organized for rapid search and retrieval|database|databases|400
+A set of rows and columns used to organize information.|table|databases|600
+software that allows the computer to create a database; add, change, and delete data in the database; sort the data; retrieve the data; and create forms and reports using the data in the database|database management system|databases|800
