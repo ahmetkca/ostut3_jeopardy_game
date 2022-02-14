@@ -81,13 +81,42 @@ void display_question(char *category, int value)
 // Returns true if the answer is correct for the question for that category and dollar value
 bool valid_answer(char *category, int value, char *answer)
 {
-    // Look into string comparison functions
-    return false;
+    // Set valid answer variable
+    bool valid_answer; 
+    
+    // Loop through questions 
+    for(int i; i <= NUM_QUESTIONS; i++ ){
+
+        if((questions[i].category == category) && (questions[i].value == value)){
+            if((strcmp(questions[i].answer,answer) == 0)){
+
+                    valid_answer = true;
+
+            }else{
+                    valid_answer = false;
+            }
+        }
+    }
+
+    return valid_answer;
 }
 
 // Returns true if the question has already been answered
 bool already_answered(char *category, int value)
 {
     // lookup the question and see if it's already been marked as answered
+
+    for(int i =0; i<NUM_QUESTIONS; i++){
+
+        if(questions[i].category==category && questions[i].value == value){
+
+            if(questions[i].answered){
+                return true;
+            }
+
+        }
+
+    }
     return false;
+    
 }
