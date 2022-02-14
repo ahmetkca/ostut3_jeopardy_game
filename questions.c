@@ -12,57 +12,64 @@
 
 void load_questions(char *path) {
     FILE *fp;
-    char buff[MAX_LEN];
+    char buff[4*MAX_LEN];
 
     fp = fopen(path, "r");
     if (fp == NULL) { printf("Could not open file %s\n", path); return;  }
     char delim[2];
     delim[0] = '|';
     delim[1] = 0;
-    while (fgets(buff, MAX_LEN, (FILE*)fp) != NULL) {
-        printf("fgets = %s\n", buff);
-        while (strtok(buff, delim) != NULL) {
-            char *b = strtok(buff, delim);
-            printf("After strtok = %s\n", b);
+    int i = 0;
+    while (fgets(buff, MAX_LEN, (FILE*)fp) != NULL && i < NUM_QUESTIONS ) {
+        question *q = &questions[i];
+        q->answered=false;
+        // printf("fgets = %s\n", buff);
+        char *token = strtok(buff, delim);
+        int y = 0;
+        char *tokens[4];
+        while (token != NULL) {
+            tokens[y] = token;
+            // printf("After strtok = %s\n", token);
+            token  = strtok(NULL, delim);
+            y++;
         }
-        
+        strcpy(q->question, tokens[0]);
+        strcpy(q->answer, tokens[1]);
+        strcpy(q->category, tokens[2]);
+        q->value = atoi(tokens[3]);
+        i++;
     }
     fclose(fp);
 }
+
+
 int main() {
-    load_questions("questions.txt");
+    load_questions(QUESTIONS_FILE_PATH);
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        printf("%s\n", questions[i].question);
+    }
 }
 
 // Initializes the array of questions for the game
 void initialize_game(void)
 {
-    question *q1 = &questions[0];
-    strcpy(q1->category, categories[0]);
-    strcpy(q1->question, "What do you call a program that translates Java bytecode into machine language instructions?");
-    strcpy(q1->answer, "Interpreter");
-    q1->answered = false;
-    q1->value = 200;
-    
-    question *q2 = &questions[0];
-    strcpy(q2->category, categories[0]);
-    strcpy(q2->question, "Is Java bytecode a high-level language or a low-level language?");
-    strcpy(q2->answer, "Low-level language");
-    q2->answered = false;
-    q2->value = 200;
-
-    question *q3 = &questions[0];
-    strcpy(q3->category, categories[0]);
-    strcpy(q3->question, "Is Java bytecode a high-level language or a low-level language?");
-    strcpy(q3->answer, "Low-level language");
-    q3->answered = false;
-    q3->value = 200;
     // initialize each question struct and assign it to the questions array
+    load_questions(QUESTIONS_FILE_PATH);
 }
 
 // Displays each of the remaining categories and question dollar values that have not been answered
 void display_categories(void)
 {
+    char table[NUM_QUESTIONS/NUM_CATEGORIES][NUM_CATEGORIES];
+    for (int i =0 ; i < NUM_CATEGORIES; i++) {
+        table[0][i] = categories[i];
+    }
     // print categories and dollar values for each unanswered question in questions array
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (questions[i].answered) {
+            
+        } 
+    }
 }
 
 // Displays the question for the category and dollar value
