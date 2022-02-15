@@ -1,7 +1,7 @@
 /*
  * Tutorial 4 Jeopardy Project for SOFE 3950U / CSCI 3020U: Operating Systems
  *
- * Copyright (C) 2015, <GROUP MEMBERS>
+ * Copyright (C) 2015, Ahmet Karapinar, 
  * All rights reserved.
  *
  */
@@ -10,6 +10,9 @@
 #include <string.h>
 #include "questions.h"
 
+
+// reads questions file line by line
+// each line contains question, answer, category, value that are splitted by |
 void load_questions(char *path) {
     FILE *fp;
     char buff[4*MAX_LEN];
@@ -48,6 +51,7 @@ int main() {
     for (int i = 0; i < NUM_QUESTIONS; i++) {
         printf("%s\n", questions[i].question);
     }
+    display_categories();
 }
 
 // Initializes the array of questions for the game
