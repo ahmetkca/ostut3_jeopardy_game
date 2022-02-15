@@ -14,11 +14,11 @@
 
 // Player struct for each player
 typedef struct {
-    char *name[MAX_LEN];
+    char name[MAX_LEN];
     int score;
 } player;
 
-struct player temp;
+
 // Returns true if the player name matches one of the existing players
 extern bool player_exists(player *players, int num_players, char *name);
 

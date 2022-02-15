@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
         
         //variables
         int questions = NUM_QUESTIONS;
-        char *category;
+        char category[BUFFER_LEN];
         int value;
         char response[BUFFER_LEN];
         char token[3][BUFFER_LEN] = {{0}};
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 
                     // Pick value of question
                     printf(" The value of question: ");
-                    scanf("%d\n", value);
+                    scanf("%d", &value);
                     
                     }while(already_answered(category,value));
                     
