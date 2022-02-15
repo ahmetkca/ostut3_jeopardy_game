@@ -76,7 +76,11 @@ void display_categories(void)
 // Displays the question for the category and dollar value
 void display_question(char *category, int value)
 {
-
+    for(int i = 0; i < NUM_QUESTIONS; i++){
+        if((questions[i].category == category) && (questions[i].value == value)){
+            printf("Here is you mutha fucking question: %s for %d", questions[i].question,questions[i].value);
+        }
+    }
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
@@ -86,7 +90,7 @@ bool valid_answer(char *category, int value, char *answer)
     bool valid_answer; 
     
     // Loop through questions 
-    for(int i; i <= NUM_QUESTIONS; i++ ){
+    for(int i; i < NUM_QUESTIONS; i++ ){
 
         if((questions[i].category == category) && (questions[i].value == value)){
             if((strcmp(questions[i].answer,answer) == 0)){
