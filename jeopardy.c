@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdarg.h>
 #include "questions.h"
 #include "players.h"
 #include "jeopardy.h"
@@ -18,6 +19,27 @@
 #define NUM_PLAYERS 4
 
 // Put global environment variables here
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
+// wrapper funtion around printf to output to console with colors
+void color_printf(const char *color, const bool *newline, const char *format,  ...) {
+    va_list args;
+    va_start(args, format);
+    char *temp = malloc(1);
+    strcat(temp, color);
+    strcat(temp, format);
+    strcat(temp, ANSI_COLOR_RESET);
+    if (newline)
+        strcat(temp, "\n");
+    vprintf(temp,  args);
+    va_end(args);
+}
 
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
 void tokenize(char *input, char **tokens) {
