@@ -19,6 +19,7 @@
 #define NUM_PLAYERS 4
 
 // Put global environment variables here
+
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_YELLOW  "\x1b[33m"
@@ -40,6 +41,14 @@ void color_printf(const char *color, const bool *newline, const char *format,  .
     vprintf(temp,  args);
     va_end(args);
 }
+
+// Compare function used to sort players array by score 
+int cmpfunc(const void * a, const void * b){
+    player *playerA = (player *)a; 
+    player *playerB = (player *)b;
+    return (playerB->score - playerA->score);
+}
+// Put global environment variables here
 
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
 void tokenize(char *input, char **tokens) {
@@ -65,10 +74,17 @@ void tokenize(char *input, char **tokens) {
     }
     strcpy(token[2], tmp_ans);
 }
-
 // Displays the game results for each player, their name and final score, ranked from first to last place
-void show_results(player *players, int num_players);
+void show_results(player *players, int num_players){
+    
+    //Quick sort players score
+    qsort(players,4,sizeof(player),cmpfunc);
 
+    //Print player scores by ranking
+    for(int i = 0; i < NUM_PLAYERS; i++){
+        printf("Rank: %d\t Name: %s\tScore:%d\n", i+1, players[i].name, players[i].score);
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -82,17 +98,67 @@ int main(int argc, char *argv[])
     initialize_game();
 
     // Prompt for players names
+    printf(ANSI_COLOR_CYAN "Welcome to Jeopardy" ANSI_COLOR_RESET "\n");
+    printf(ANSI_COLOR_RED"Please enter the players names: "ANSI_COLOR_RESET"\n");
     
     // initialize each of the players in the array
-
+    for(int i =0; i < NUM_PLAYERS; i++){
+        scanf("%s", players[i].name);
+        players[i].score = 0;
+    }
     // Perform an infinite loop getting command input from users until game ends
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
     {
-        // Call functions from the questions and players source files
+        
+        //variables
+        int questions = NUM_QUESTIONS;
+        char *category;
+        int value;
+        char response[BUFFER_LEN];
+        char token[3][BUFFER_LEN] = {{0}};
 
         // Execute the game until all questions are answered
+        while(questions != 0){
 
-        // Display the final results and exit
-    }
-    return EXIT_SUCCESS;
+             // Call functions from the questions and players source files
+            display_categories();
+
+            for(int i = 0; i < NUM_PLAYERS; i++){
+                
+                do{
+                    // Pick Category
+                    printf("It is %s turn. \nPlease select the category: \n",players[i].name);
+                    scanf("%s", category);
+
+                    // Pick value of question
+                    printf(" The value of question: ");
+                    scanf("%d\n", value);
+                    
+                    }while(already_answered(category,value));
+                    
+                    // Display question take player response
+                    display_question(category, value);
+                    scanf("%s", response);
+
+                    tokenize(response,token);
+                    
+                    if(valid_answer(category,value,token[2]))
+                    {
+                        printf("Your answer is correct you may choose again.");
+                        players[i].score += value;
+                        i--;
+                    }else
+                    {
+                        printf("Sorry that is the incorrect answer ");
+                        questions--;
+                    }
+                    
+                }
+            }
+            show_results(players, NUM_PLAYERS);
+        }          
+        
+        return EXIT_SUCCESS;
 }
+    
+

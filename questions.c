@@ -1,7 +1,7 @@
 /*
  * Tutorial 4 Jeopardy Project for SOFE 3950U / CSCI 3020U: Operating Systems
  *
- * Copyright (C) 2015, Ahmet Karapinar, 
+ * Copyright (C) 2015, <GROUP MEMBERS>
  * All rights reserved.
  *
  */
@@ -51,7 +51,7 @@ int main() {
     for (int i = 0; i < NUM_QUESTIONS; i++) {
         printf("%s\n", questions[i].question);
     }
-    display_categories();
+        display_categories();
 }
 
 // Initializes the array of questions for the game
@@ -82,7 +82,7 @@ void display_question(char *category, int value)
 {
     for(int i = 0; i < NUM_QUESTIONS; i++){
         if((questions[i].category == category) && (questions[i].value == value)){
-            printf("Here is you mutha fucking question: %s for %d", questions[i].question,questions[i].value);
+            printf("For %d %s", questions[i].value,questions[i].question);
         }
     }
 }
@@ -94,7 +94,7 @@ bool valid_answer(char *category, int value, char *answer)
     bool valid_answer; 
     
     // Loop through questions 
-    for(int i; i < NUM_QUESTIONS; i++ ){
+    for(int i = 0; i < NUM_QUESTIONS; i++ ){
 
         if((questions[i].category == category) && (questions[i].value == value)){
             if((strcmp(questions[i].answer,answer) == 0)){
@@ -115,7 +115,7 @@ bool already_answered(char *category, int value)
 {
     // lookup the question and see if it's already been marked as answered
 
-    for(int i =0; i<NUM_QUESTIONS; i++){
+    for(int i = 0; i<NUM_QUESTIONS; i++){
 
         if(questions[i].category==category && questions[i].value == value){
 
