@@ -60,14 +60,15 @@ void initialize_game(void)
 // Displays each of the remaining categories and question dollar values that have not been answered
 void display_categories(void)
 {
-    char table[NUM_QUESTIONS/NUM_CATEGORIES][NUM_CATEGORIES];
-    for (int i =0 ; i < NUM_CATEGORIES; i++) {
-        table[0][i] = categories[i];
-    }
+    // int cate_inde[NUM_CATEGORIES];
+    // char table[NUM_QUESTIONS/NUM_CATEGORIES][NUM_CATEGORIES];
+    // for (int i =0 ; i < NUM_CATEGORIES; i++) {
+    //     table[0][i] = categories[i];
+    // }
     // print categories and dollar values for each unanswered question in questions array
     for (int i = 0; i < NUM_QUESTIONS; i++) {
-        if (questions[i].answered) {
-            
+        if (!questions[i].answered) {
+            printf("%s %d\n", questions[i].category, questions[i].value);
         } 
     }
 }
