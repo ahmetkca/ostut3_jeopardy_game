@@ -45,15 +45,6 @@ void load_questions(char *path) {
     fclose(fp);
 }
 
-
-int main() {
-    load_questions(QUESTIONS_FILE_PATH);
-    for (int i = 0; i < NUM_QUESTIONS; i++) {
-        printf("%s\n", questions[i].question);
-    }
-        display_categories();
-}
-
 // Initializes the array of questions for the game
 void initialize_game(void)
 {
