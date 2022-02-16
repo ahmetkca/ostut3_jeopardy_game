@@ -60,7 +60,9 @@ void display_categories(void)
     // print categories and their values for each unanswered question in questions array
     for (int i = 0; i < NUM_QUESTIONS; i++) {
         if (!questions[i].answered) {
-            color_printf(ANSI_COLOR_MAGENTA, true, "%s %d", questions[i].category, questions[i].value);
+            char *random_ansi_color = get_random_ansi_color();
+            color_printf(random_ansi_color, true, "%s %d", questions[i].category, questions[i].value);
+            free(random_ansi_color);
         } 
     }
 }
@@ -70,8 +72,10 @@ void display_question(char *category, int value)
 {
     for(int i = 0; i < NUM_QUESTIONS; i++){
         question *q = &questions[i];
-        if((strcmp(q->category, category) == 0) && q->value == value ){
-            printf("\nFor %d %s\n", questions[i].value,questions[i].question);
+        if((strcmp(q->category, category) == 0) && q->value == value ) {
+            char *random_ansi_color = get_random_ansi_color();
+            color_printf(random_ansi_color, true, "\nFor %d %s", questions[i].value,questions[i].question);
+            free(random_ansi_color);
             return;
         }
     }
