@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "questions.h"
+#include "utils.h"
 
 char * QUESTIONS_FILE_PATH;
 
@@ -27,13 +28,11 @@ void load_questions(char *path) {
     while (fgets(buff, MAX_LEN, (FILE*)fp) != NULL && i < NUM_QUESTIONS ) {
         question *q = &questions[i];
         q->answered=false;
-        // printf("fgets = %s\n", buff);
         char *token = strtok(buff, delim);
         int y = 0;
         char *tokens[4];
         while (token != NULL) {
             tokens[y] = token;
-            // printf("After strtok = %s\n", token);
             token  = strtok(NULL, delim);
             y++;
         }
@@ -57,15 +56,11 @@ void initialize_game(void)
 // Displays each of the remaining categories and question dollar values that have not been answered
 void display_categories(void)
 {
-    // int cate_inde[NUM_CATEGORIES];
-    // char table[NUM_QUESTIONS/NUM_CATEGORIES][NUM_CATEGORIES];
-    // for (int i =0 ; i < NUM_CATEGORIES; i++) {
-    //     table[0][i] = categories[i];
-    // }
-    // print categories and dollar values for each unanswered question in questions array
+
+    // print categories and their values for each unanswered question in questions array
     for (int i = 0; i < NUM_QUESTIONS; i++) {
         if (!questions[i].answered) {
-            printf("%s %d\n", questions[i].category, questions[i].value);
+            color_printf(ANSI_COLOR_MAGENTA, true, "%s %d", questions[i].category, questions[i].value);
         } 
     }
 }

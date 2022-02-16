@@ -1,5 +1,5 @@
 Is Java bytecode a high-level language or a low-level language?|Low-level language|programming|200
-What is a compiler?|Translates source codes into object codes|programming|400
+Translates source codes into object codes|compiler|programming|400
 What do you call a program that translates Java bytecode into machine language instructions?|Interpreter|programming|600
 Is Java a high-level language or a low-level language?|High-level language|programming|800
 Who's worst professor in the algorithm course?|Masoud|algorithms|200
