@@ -10,6 +10,7 @@
 #include <string.h>
 #include "questions.h"
 
+char * QUESTIONS_FILE_PATH;
 
 // reads questions file line by line
 // each line contains question, answer, category, value that are splitted by |
@@ -73,7 +74,8 @@ void display_question(char *category, int value)
 {
     for(int i = 0; i < NUM_QUESTIONS; i++){
         if((questions[i].category == category) && (questions[i].value == value)){
-            printf("For %d %s", questions[i].value,questions[i].question);
+            printf("For %d %s\n", questions[i].value,questions[i].question);
+            // return;
         }
     }
 }
@@ -119,4 +121,10 @@ bool already_answered(char *category, int value)
     }
     return false;
     
+}
+
+void set_questions_file_path(char * filepath) {
+    QUESTIONS_FILE_PATH = malloc(MAX_LEN);
+    strcpy(QUESTIONS_FILE_PATH, filepath);
+    // free(QUESTIONS_FILE_PATH);
 }

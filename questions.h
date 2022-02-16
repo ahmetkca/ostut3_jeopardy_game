@@ -11,12 +11,14 @@
 #include <stdbool.h>
 
 
-#define QUESTIONS_FILE_PATH "questions.txt"
 #define MAX_LEN 256
 #define NUM_CATEGORIES 3
 // The number of questions, you can use this in your functions in
 // questions.c, this can be accessed in questions.c
 #define NUM_QUESTIONS 12
+
+extern char * QUESTIONS_FILE_PATH;
+
 
 // List of 3 categories as array of strings
 static char categories[NUM_CATEGORIES][MAX_LEN] = {
@@ -38,6 +40,10 @@ typedef struct {
 // this may need to be a pointer if you want it set dynamically
 question questions[NUM_QUESTIONS];
 
+// reads questions file line by line
+// each line contains question, answer, category, value that are splitted by '|'
+extern void load_questions(char *path);
+
 // Initializes the array of questions for the game
 extern void initialize_game(void);
 
@@ -52,5 +58,7 @@ extern bool valid_answer(char *category, int value, char *answer);
 
 // Returns true if the question has already been answered
 extern bool already_answered(char *category, int value);
+
+extern void set_questions_file_path(char * filepath);
 
 #endif /* QUESTIONS_H_ */
