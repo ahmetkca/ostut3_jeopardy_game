@@ -101,7 +101,8 @@ int main(int argc, char *argv[])
 
              // Call functions from the questions and players source files
 
-            for(int i = 0; i < NUM_PLAYERS; i++){
+            for(int i = 0; i < NUM_PLAYERS; i++)
+            {
                     display_categories();
 
                     // Pick Category
@@ -122,17 +123,17 @@ int main(int argc, char *argv[])
 
                     tokenize(response, token);
                     
-                    if(valid_answer(category,value,token[2]))
+                    if(valid_answer(category,value,token[2]) == true)
                     {
                         color_printf(ANSI_COLOR_GREEN, true, "Your answer is correct you may choose again.");
-                        players[i].score += value;
+                        update_score(players, NUM_PLAYERS, players[i].name, value);
                         i--;
-                    }else
+                    }
+                    else
                     {
                         color_printf(ANSI_COLOR_RED, true, "Sorry that is the incorrect answer.");
-                        questions--;
                     }
-                    
+                    questions--;
                 }
             }
             show_results(players, NUM_PLAYERS);
