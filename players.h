@@ -14,7 +14,7 @@
 
 // Player struct for each player
 typedef struct player {
-    char *name[MAX_LEN];
+    char name[MAX_LEN];
     int score;
 } player;
 
