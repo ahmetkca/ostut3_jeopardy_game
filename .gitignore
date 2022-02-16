@@ -1,6 +1,9 @@
 delete_me
 delete_me.c
+delete_me/
 .vscode/
 *.o
 *.exe
-tests/
+# tests/
+jeopardy
+utils
