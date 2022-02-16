@@ -78,7 +78,7 @@ void tokenize(char *input, char **tokens) {
 void show_results(player *players, int num_players){
     
     //Quick sort players score
-    qsort(players,4,sizeof(player),cmpfunc);
+    qsort(players,num_players,sizeof(player),cmpfunc);
 
     //Print player scores by ranking
     for(int i = 0; i < NUM_PLAYERS; i++){
@@ -114,8 +114,9 @@ int main(int argc, char *argv[])
         int questions = NUM_QUESTIONS;
         char category[BUFFER_LEN];
         int value;
-        char response[BUFFER_LEN];
-        char token[3][BUFFER_LEN] = {{0}};
+        char guess[BUFFER_LEN];
+        char token[3][BUFFER_LEN] = {{}};
+        
 
         // Execute the game until all questions are answered
         while(questions != 0){
@@ -131,16 +132,16 @@ int main(int argc, char *argv[])
                     scanf("%s", category);
 
                     // Pick value of question
-                    printf(" The value of question: ");
+                    printf("The value of question: ");
                     scanf("%d", &value);
                     
                     }while(already_answered(category,value));
                     
                     // Display question take player response
                     display_question(category, value);
-                    scanf("%s", response);
+                    scanf("%s", guess);
 
-                    tokenize(response,token);
+                    tokenize(guess,token);
                     
                     if(valid_answer(category,value,token[2]))
                     {
@@ -153,10 +154,10 @@ int main(int argc, char *argv[])
                         questions--;
                     }
                     
-                }
             }
+        }
             show_results(players, NUM_PLAYERS);
-        }          
+    }          
         
         return EXIT_SUCCESS;
 }

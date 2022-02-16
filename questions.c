@@ -72,8 +72,8 @@ void display_categories(void)
 void display_question(char *category, int value)
 {
     for(int i = 0; i < NUM_QUESTIONS; i++){
-        if((questions[i].category == category) && (questions[i].value == value)){
-            printf("For %d %s", questions[i].value,questions[i].question);
+        if((strcmp(questions[i].category,category) == 0) && (questions[i].value == value)){
+            printf("For %d %s: ", questions[i].value,questions[i].question);
         }
     }
 }
@@ -87,7 +87,7 @@ bool valid_answer(char *category, int value, char *answer)
     // Loop through questions 
     for(int i = 0; i < NUM_QUESTIONS; i++ ){
 
-        if((questions[i].category == category) && (questions[i].value == value)){
+        if((strcmp(questions[i].category,category) == 0) && (questions[i].value == value)){
             if((strcmp(questions[i].answer,answer) == 0)){
 
                     valid_answer = true;
