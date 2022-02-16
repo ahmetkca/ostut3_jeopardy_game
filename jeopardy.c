@@ -46,7 +46,7 @@ void tokenize(char *input, char tokens[3][MAX_LEN]) {
         i++;
     }
     char *tmp_ans = malloc(strlen(ans) - 1);
-    for (int i = 0; i < strlen(ans) - 1; i++) {
+    for (long unsigned int i = 0; i < (strlen(ans) - 1); i++) {
         tmp_ans[i] = ans[i];
     }
     strcpy(tokens[2], tmp_ans);
@@ -65,7 +65,7 @@ void show_results(player *players, int num_players){
     }
 }
 
-int main(int argc, char *argv[])
+int main(void)
 {
     // An array of 4 players, may need to be a pointer if you want it set dynamically
     player players[NUM_PLAYERS];
@@ -83,8 +83,9 @@ int main(int argc, char *argv[])
     
     // initialize each of the players in the array
     for(int i =0; i < NUM_PLAYERS; i++){
-        scanf("%s", players[i].name);
-        players[i].score = 0;
+        player *p = &players[i];
+        scanf("%s", p->name);
+        p->score = 0;
     }
     // Perform an infinite loop getting command input from users until game ends
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
