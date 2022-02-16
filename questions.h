@@ -21,11 +21,11 @@ extern char * QUESTIONS_FILE_PATH;
 
 
 // List of 3 categories as array of strings
-static char categories[NUM_CATEGORIES][MAX_LEN] = {
-    "programming", 
-    "algorithms", 
-    "databases"
-};
+// static char categories[NUM_CATEGORIES][MAX_LEN] = {
+//     "programming", 
+//     "algorithms", 
+//     "databases"
+// };
 
 // Questions struct for each question
 typedef struct {
