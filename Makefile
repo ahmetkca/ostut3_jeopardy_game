@@ -1,13 +1,13 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
+CFLAGS = -g -Wall -Wextra -std=c99
 LFLAGS = 
 LIBS = 
-SOURCES = jeopardy.c questions.c players.c
+SOURCES = jeopardy.c questions.c players.c utils.c
 OBJECTS = $(subst .c,.o,$(SOURCES))
 EXE = jeopardy.exe
 .PHONY: clean help
 
-jeopardy.exe : jeopardy.o questions.o players.o
+jeopardy.exe : jeopardy.o questions.o players.o utils.o
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ 
 
 %.o : %.c

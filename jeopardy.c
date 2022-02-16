@@ -100,35 +100,36 @@ int main(int argc, char *argv[])
         while(questions != 0){
 
              // Call functions from the questions and players source files
-            display_categories();
 
             for(int i = 0; i < NUM_PLAYERS; i++){
-                
-                do{
+                    display_categories();
+
                     // Pick Category
-                    color_printf(ANSI_COLOR_MAGENTA, true, "It is %s turn. \nPlease select the category: ",players[i].name);
+                    color_printf(ANSI_COLOR_MAGENTA, false, "It is %s turn. \nPlease select the category: ",players[i].name);
                     scanf("%s", category);
+                    getchar();
 
                     // Pick value of question
-                    color_printf(ANSI_COLOR_BLUE, false, " The value of question: ");
-                    scanf("%d\n", &value);
-                    
-                    }while(already_answered(category,value));
+                    color_printf(ANSI_COLOR_BLUE, false, "The value of question: ");
+                    scanf("%d", &value);
+                    getchar();
                     
                     // Display question take player response
                     display_question(category, value);
-                    scanf("%s", response);
+                    printf("%s", "Enter your answer: ");
+                    scanf("%[^\n]", response);
+                    getchar();
 
                     tokenize(response, token);
                     
                     if(valid_answer(category,value,token[2]))
                     {
-                        printf("Your answer is correct you may choose again.");
+                        color_printf(ANSI_COLOR_GREEN, true, "Your answer is correct you may choose again.");
                         players[i].score += value;
                         i--;
                     }else
                     {
-                        printf("Sorry that is the incorrect answer ");
+                        color_printf(ANSI_COLOR_RED, true, "Sorry that is the incorrect answer.");
                         questions--;
                     }
                     
