@@ -20,7 +20,8 @@
 #define NUM_PLAYERS 4
 
 // Compare function used to sort players array by score 
-int compare_two_players_by_score(const void * a, const void * b){
+int compare_two_players_by_score(const void * a, const void * b)
+{
     player *playerA = (player *)a; 
     player *playerB = (player *)b;
     return (playerB->score - playerA->score);
@@ -103,43 +104,40 @@ int main(int argc, char *argv[])
 
             for(int i = 0; i < NUM_PLAYERS; i++)
             {
-                    display_categories();
+                display_categories();
 
-                    // Pick Category
-                    color_printf(ANSI_COLOR_MAGENTA, false, "It is %s turn. \nPlease select the category: ",players[i].name);
-                    scanf("%s", category);
-                    getchar();
+                // Pick Category
+                color_printf(ANSI_COLOR_MAGENTA, false, "It is %s turn. \nPlease select the category: ",players[i].name);
+                scanf("%s", category);
+                getchar();
 
-                    // Pick value of question
-                    color_printf(ANSI_COLOR_BLUE, false, "The value of question: ");
-                    scanf("%d", &value);
-                    getchar();
+                // Pick value of question
+                color_printf(ANSI_COLOR_BLUE, false, "The value of question: ");
+                scanf("%d", &value);
+                getchar();
                     
-                    // Display question take player response
-                    display_question(category, value);
-                    printf("%s", "Enter your answer: ");
-                    scanf("%[^\n]", response);
-                    getchar();
+                // Display question take player response
+                display_question(category, value);
+                printf("%s", "Enter your answer: ");
+                scanf("%[^\n]", response);
+                getchar();
 
-                    tokenize(response, token);
+                tokenize(response, token);
                     
-                    if(valid_answer(category,value,token[2]) == true)
-                    {
-                        color_printf(ANSI_COLOR_GREEN, true, "Your answer is correct you may choose again.");
-                        update_score(players, NUM_PLAYERS, players[i].name, value);
-                        i--;
-                    }
-                    else
-                    {
-                        color_printf(ANSI_COLOR_RED, true, "Sorry that is the incorrect answer.");
-                    }
-                    questions--;
+                if(valid_answer(category,value,token[2]) == true)
+                {
+                    color_printf(ANSI_COLOR_GREEN, true, "Your answer is correct you may choose again.");
+                    update_score(players, NUM_PLAYERS, players[i].name, value);
+                    i--;
                 }
+                else
+                {
+                    color_printf(ANSI_COLOR_RED, true, "Sorry that is the incorrect answer.");
+                }
+                questions--;
             }
-            show_results(players, NUM_PLAYERS);
-        }          
-        
-        return EXIT_SUCCESS;
+        }
+    }
+    show_results(players, NUM_PLAYERS);
+    return EXIT_SUCCESS;        
 }
-    
-
