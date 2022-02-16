@@ -4,3 +4,6 @@ delete_me.c
 *.o
 *.exe
 tests/
+jeopardy
+questions
+utils
