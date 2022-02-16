@@ -50,6 +50,7 @@ void load_questions(char *path) {
 void initialize_game(void)
 {
     // initialize each question struct and assign it to the questions array
+
     load_questions(QUESTIONS_FILE_PATH);
 }
 
@@ -73,9 +74,10 @@ void display_categories(void)
 void display_question(char *category, int value)
 {
     for(int i = 0; i < NUM_QUESTIONS; i++){
-        if((questions[i].category == category) && (questions[i].value == value)){
-            printf("For %d %s\n", questions[i].value,questions[i].question);
-            // return;
+        question *q = &questions[i];
+        if((strcmp(q->category, category) == 0) && q->value == value ){
+            printf("\nFor %d %s\n", questions[i].value,questions[i].question);
+            return;
         }
     }
 }
@@ -89,13 +91,14 @@ bool valid_answer(char *category, int value, char *answer)
     // Loop through questions 
     for(int i = 0; i < NUM_QUESTIONS; i++ ){
 
-        if((questions[i].category == category) && (questions[i].value == value)){
+        if((strcmp(questions[i].category, category) == 0) && questions[i].value == value){
             if((strcmp(questions[i].answer,answer) == 0)){
 
                     valid_answer = true;
-
+                    questions[i].answered = true;
             }else{
                     valid_answer = false;
+                    questions[i].answered = true;
             }
         }
     }
@@ -110,7 +113,7 @@ bool already_answered(char *category, int value)
 
     for(int i = 0; i<NUM_QUESTIONS; i++){
 
-        if(questions[i].category==category && questions[i].value == value){
+        if((strcmp(questions[i].category, category) == 0) && questions[i].value == value){
 
             if(questions[i].answered){
                 return true;
