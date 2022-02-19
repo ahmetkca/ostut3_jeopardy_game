@@ -7,13 +7,13 @@ OBJECTS = $(subst .c,.o,$(SOURCES))
 EXE = jeopardy.exe
 .PHONY: clean help
 
+all : clean $(EXE) cleanup
+
 jeopardy.exe : jeopardy.o questions.o players.o utils.o
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ 
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< 
-
-all : $(EXE)
 
 clean:
 	rm -f $(OBJECTS) $(EXE) *~
