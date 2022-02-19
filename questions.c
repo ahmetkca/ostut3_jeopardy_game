@@ -60,21 +60,26 @@ void display_categories(void)
     // print categories and their values for each unanswered question in questions array
     for (int i = 0; i < NUM_QUESTIONS; i++) {
         if (!questions[i].answered) {
-            color_printf(ANSI_COLOR_MAGENTA, true, "%s %d", questions[i].category, questions[i].value);
+            char *random_ansi_color = get_random_ansi_color();
+            color_printf(random_ansi_color, true, "%s %d", questions[i].category, questions[i].value);
+            free(random_ansi_color);
         } 
     }
 }
 
 // Displays the question for the category and dollar value
-void display_question(char *category, int value)
+bool display_question(char *category, int value)
 {
     for(int i = 0; i < NUM_QUESTIONS; i++){
         question *q = &questions[i];
-        if((strcmp(q->category, category) == 0) && q->value == value ){
-            printf("\nFor %d %s\n", questions[i].value,questions[i].question);
-            return;
+        if((strcmp(q->category, category) == 0) && q->value == value && q->answered == false) {
+            char *random_ansi_color = get_random_ansi_color();
+            color_printf(random_ansi_color, true, "\nFor %d %s", questions[i].value,questions[i].question);
+            free(random_ansi_color);
+            return true;
         }
     }
+    return false;
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
@@ -118,7 +123,15 @@ bool already_answered(char *category, int value)
 
     }
     return false;
-    
+
+}
+
+bool category_exists(char *category) {
+    for (int i = 0; i < NUM_CATEGORIES ; i++) {
+        if(strcmp(categories[i], category) == 0)
+            return true;
+    }
+    return false;
 }
 
 void set_questions_file_path(char * filepath) {

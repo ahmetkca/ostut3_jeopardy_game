@@ -2,7 +2,7 @@ Is Java bytecode a high-level language or a low-level language?|Low-level langua
 Translates source codes into object codes|compiler|programming|400
 What do you call a program that translates Java bytecode into machine language instructions?|Interpreter|programming|600
 Is Java a high-level language or a low-level language?|High-level language|programming|800
-Who's worst professor in the algorithm course?|Masoud|algorithms|200
+Who's worst professor in the algorithm course?|grandpa|algorithms|200
 Radix sort requires which sorting algorithm for assistance?|counting sort|algorithms|400
 What is the most popular divide and conquer sorting algorithm|merge sort|algorithms|600
 What is the time complexity of quicksort?|nlogn|algorithms|800

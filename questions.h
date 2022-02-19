@@ -21,11 +21,11 @@ extern char * QUESTIONS_FILE_PATH;
 
 
 // List of 3 categories as array of strings
-// static char categories[NUM_CATEGORIES][MAX_LEN] = {
-//     "programming", 
-//     "algorithms", 
-//     "databases"
-// };
+static char categories[NUM_CATEGORIES][MAX_LEN] = {
+    "programming", 
+    "algorithms", 
+    "databases"
+};
 
 // Questions struct for each question
 typedef struct {
@@ -51,13 +51,15 @@ extern void initialize_game(void);
 extern void display_categories(void);
 
 // Displays the question for the category and dollar value
-extern void display_question(char *category, int value);
+extern bool display_question(char *category, int value);
 
 // Returns true if the answer is correct for the question for that category and dollar value
 extern bool valid_answer(char *category, int value, char *answer);
 
 // Returns true if the question has already been answered
 extern bool already_answered(char *category, int value);
+
+extern bool category_exists(char *category);
 
 extern void set_questions_file_path(char * filepath);
 

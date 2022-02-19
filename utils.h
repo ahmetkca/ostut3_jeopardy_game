@@ -11,4 +11,6 @@
 
 void color_printf(const char *color, const bool newline, const char *format, ...);
 
+char * get_random_ansi_color(void);
+
 #endif /* UTILS_H_ */
