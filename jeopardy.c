@@ -156,6 +156,7 @@ int main(void)
                 // take player's response for the current question
                 char temp_response[BUFFER_LEN];
                 do {
+                    printf("Please state What is or Who is before your answer.\n");
                     printf("%s", "Enter your answer: ");
                     scanf("%[^\n]", response);
                     getchar();
